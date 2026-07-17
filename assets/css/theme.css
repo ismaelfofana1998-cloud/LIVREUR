@@ -1,0 +1,92 @@
+/* ============================================================================
+   IKMS (Ikigai Mobility Software) — Espace Livreur — Jetons de design
+   Accent orange kinétique (haute visibilité, encore mieux en plein soleil que
+   l'ancien terracotta feutré) — même palette que le reste de l'app, poussée
+   en contraste pour une lecture en plein soleil. Une seule police web
+   (Space Mono, pour les chiffres du compteur du jour) : le reste utilise la
+   pile système, pour rester léger sur une connexion 3G instable.
+   ============================================================================ */
+
+:root {
+  /* Palette de marque — "Kinetic" (mêmes valeurs que les autres espaces) */
+  --terracotta: #FF5C1A;
+  --terracotta-deep: #E24700;
+  --peche: #FFC670;
+  --creme: #FAFAF8;
+  --indigo: #10131C;
+  --gold: #FFB703;
+
+  /* Neutres poussés pour le plein soleil */
+  --ink: #0B0E14;
+  --ink-soft: #4A5160;
+  --papier: #FFFFFF;
+  --ligne: #E7E7E2;
+
+  /* États */
+  --attente: #B45309;
+  --attente-fond: #FEF3C7;
+  --valide: #15803D;
+  --valide-fond: #DCFCE7;
+  --alerte: #DC2626;
+  --alerte-fond: #FEE2E2;
+
+  /* Typographie */
+  --police-corps: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --police-titre: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --police-compteur: "Space Mono", "SF Mono", Consolas, monospace;
+
+  /* Echelle */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --ombre: 0 2px 10px rgba(11, 14, 20, 0.08);
+  --ombre-forte: 0 8px 28px rgba(11, 14, 20, 0.16);
+  --ombre-accent: 0 10px 24px -6px rgba(255, 92, 26, 0.45);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Zone tactile minimale (pouce, en mouvement) */
+  --touch: 52px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  animation: entree-douce 0.25s ease; /* fondu doux à chaque changement de page */
+  font-family: var(--police-corps);
+  background: var(--creme);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+h1, h2, h3 { font-family: var(--police-titre); margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+button { font-family: inherit; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ============================================================================
+   Retour tactile — feedback immédiat au clic/tap, et transition douce à
+   chaque changement d'écran/onglet/panneau. Sans ça, l'interface donne
+   l'impression de ne pas réagir au toucher (retour terrain).
+   ============================================================================ */
+button:not(:disabled), .btn:not(:disabled) {
+  transition: transform 0.08s ease, opacity 0.08s ease, background-color 0.15s ease;
+}
+button:not(:disabled):active, .btn:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+@keyframes entree-douce {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.entree-contenu { animation: entree-douce 0.22s ease; }

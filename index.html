@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Connexion livreur — IKMS</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0B0E14">
+<link rel="stylesheet" href="./assets/css/theme.css">
+<style>
+  .ecran-connexion {
+    min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column;
+    justify-content: center; padding: 24px; background: var(--creme);
+  }
+  .logo-bloc { text-align: center; margin-bottom: 32px; }
+  .logo-bloc .marque { font-size: 22px; font-weight: 800; color: var(--terracotta); }
+  .logo-bloc .marque span { display: block; font-size: 11px; font-weight: 600; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.02em; }
+  .logo-bloc .sous-marque { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+  form { display: flex; flex-direction: column; gap: 14px; max-width: 380px; margin: 0 auto; width: 100%; }
+  label { font-size: 13px; font-weight: 700; color: var(--ink-soft); margin-bottom: -8px; }
+  input {
+    min-height: 52px; border: 2px solid var(--ligne); border-radius: 16px; padding: 0 16px;
+    font-size: 16px; background: var(--papier); color: var(--ink);
+  }
+  input:focus { border-color: var(--terracotta); outline: none; }
+  .bouton-connexion {
+    min-height: 54px; background: var(--terracotta); color: var(--papier); border: none;
+    border-radius: 16px; font-size: 16px; font-weight: 700; margin-top: 6px;
+  }
+  .bouton-connexion:disabled { opacity: 0.6; }
+  .erreur { color: var(--alerte); font-size: 13.5px; font-weight: 600; text-align: center; min-height: 18px; }
+</style>
+</head>
+<body>
+  <div class="ecran-connexion">
+    <div class="logo-bloc">
+      <div class="marque">IKMS<span>Ikigai Mobility Software</span></div>
+      <div class="sous-marque">Espace livreur</div>
+    </div>
+    <form id="form-connexion">
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="username" required placeholder="ton@email.com">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" autocomplete="current-password" required placeholder="••••••••">
+      <p class="erreur" id="message-erreur" role="alert"></p>
+      <button class="bouton-connexion" type="submit" id="bouton-connexion">Se connecter</button>
+    </form>
+  </div>
+  <script src="./assets/js/config.public.js"></script>
+  <script type="module" src="./assets/js/login.js"></script>
+</body>
+</html>
